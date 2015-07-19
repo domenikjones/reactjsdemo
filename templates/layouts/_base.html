@@ -1,0 +1,142 @@
+{% load staticfiles i18n %}
+
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>ReactJS Demo</title>
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="{% static 'bower_components/fontawesome/css/font-awesome.min.css' %}" />
+	<link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}" />
+</head>
+<body>
+
+{# js libraries #}
+<script src="{% static 'bower_components/jquery/dist/jquery.min.js' %}" type="text/jsx" type="text/jsx"></script>
+<script src="{% static 'bower_components/bootstrap/dist/js/bootstrap.min.js' %}" type="text/jsx" type="text/jsx"></script>
+
+{# react libraries #}
+<script src="https://fb.me/react-0.13.3.js"></script>
+<script src="https://fb.me/JSXTransformer-0.13.3.js"></script>
+
+{# react components #}
+<script src="{% static 'components/Demo.jsx' %}" type="text/jsx" type="text/jsx"></script>
+<script src="{% static 'components/Appartement.jsx' %}" type="text/jsx" type="text/jsx"></script>
+<script src="{% static 'components/AppartementListing.jsx' %}" type="text/jsx" type="text/jsx"></script>
+<script src="{% static 'components/Paginator.jsx' %}" type="text/jsx" type="text/jsx"></script>
+<script src="{% static 'components/SearchForm.jsx' %}" type="text/jsx" type="text/jsx"></script>
+<script src="{% static 'components/BootstrapModal.jsx' %}" type="text/jsx" type="text/jsx"></script>
+
+{# react demo project #}
+<script type="text/jsx">
+	React.render(<App />, document.getElementById('content-react'));
+</script>
+
+{# navbar #}
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="navbar-header">
+
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-6">
+                            <a class="navbar-brand" href="#">
+                                <span class="navbar-title">ReactJS - Appartment Demo</span>
+                            </a>
+                        </div>
+                        <div class="col-xs-12 col-sm-6">
+                            <div class="align-right">
+                                <a href="#">
+                                    <i class="fa fa-home navbar-icon"></i>
+                                </a>
+                                <a href="mailto:domenik.jones@gmail.com">
+                                    <i class="fa fa-envelope-o navbar-icon"></i>
+                                </a>
+                                <a href="#">
+                                    <i class="fa fa-ellipsis-v navbar-icon"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+
+{# header #}
+{#<div class="container">#}
+{#    <div id="header">#}
+{#        <h1>{% trans 'ReactJS - Appartement Demo' %}</h1>#}
+{#    </div>#}
+{#</div>#}
+
+
+{# 2 column layout #}
+<div id="main">
+
+    <div id="loader" class="loaded">
+
+    </div>
+
+    <div id="wrapper" class="unloaded">
+        {# left sidebar nav #}
+        <aside id="left-sidebar-nav" class="hidden-xs hidden-sm">
+            <ul id="slide-out">
+                {# profile #}
+                <li class="profile">
+
+                </li>
+            </ul>
+        </aside>
+
+        {# content #}
+        <section id="content" class="content-white">
+            {# breadcrumbs #}
+            <div id="breadcrumbs-wrapper">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <br />
+                            <h1>Appartement Search</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {# react content #}
+            <div id="content-react">
+
+            </div>
+
+            <div class="divider bottom"></div>
+
+            {# foooter #}
+            <div class="container-fluid">
+                <div id="footer">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                            <p>
+                                <small>&copy; {% now "Y" %} by <a href="mailto:domenik.jones@gmail.com">Domenik Jones</a></small>
+                            </p>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                            <p class="align-right">
+                                <small>inspired by <a href="https://www.ascribe.io/" target="_blank">ascribe.io</a></small>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+</div>
+
+
+
+</body>
+</html>

@@ -1,0 +1,19 @@
+@mixin border-radius-global($px)
+  -webkit-border-radius: $px
+  -moz-border-radius: $px
+  -ms-border-radius: $px
+  -o-border-radius: $px
+
+@mixin box-shadow($val)
+  -webkit-box-shadow: $val
+  -moz-box-shadow: $val
+  -ms-box-shadow: $val
+  -o-box-shadow: $val
+  box-shadow: $val
+
+@mixin box-shadow-2($val1, $val2)
+  -webkit-box-shadow: $val1, $val2
+  -moz-box-shadow: $val1, $val2
+  -ms-box-shadow: $val1, $val2
+  -o-box-shadow: $val1, $val2
+  box-shadow: $val1, $val2

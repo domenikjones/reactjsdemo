@@ -1,0 +1,73 @@
+$form-color-default: #999999
+$form-color-active: $cyan-500
+
+// a material design like text input
+@mixin material-input()
+  width: 100%
+  border: none
+  border-bottom: 1px solid $form-color-default
+  background: none
+  transition: border 1s, border-width 1s
+  @include box-shadow(none)
+  @include border-radius-global(0px)
+
+  &:focus
+    outline: none
+    border-bottom: 2px solid $form-color-active
+    @include box-shadow(none)
+
+// a material design like select
+@mixin material-select()
+  width: 100%
+  border: none
+  border-bottom: 1px solid $form-color-default
+  background: none
+  -webkit-appearance: none
+  @include box-shadow(none)
+  @include border-radius-global(0px)
+
+  &:focus
+    outline: none
+    border-bottom: 2px solid $form-color-active
+    @include box-shadow(none)
+
+
+label
+  width: 100%
+  font-weight: 400
+  color: $form-color-default
+
+  &:hover,
+  &:hover .select-arrow
+    color: $form-color-active
+
+  input[type="text"]
+    @include material-input()
+
+  select.form-control
+    @include material-select()
+
+  // select arrow
+  .select-arrow
+    position: absolute
+    top: 15px
+    right: 15px
+    z-index: 1000
+
+
+.btn.btn-material
+  background-color: $pink-A200
+  color: #fff
+  font-size: 16px
+  line-height: 45px
+  padding: 0 25px
+  text-transform: uppercase
+  vertical-align: middle
+  transition: box-shadow .5s, -moz-box-shadow .5s, -webkit-box-shadow .5s, -ms-box-shadow .5, -o-box-shadow .5s, background-color .5s
+  @include border-radius-global(3px)
+  @include box-shadow-2(rgba(0, 0, 0, 0.15) 0px 2px 5px 0px, rgba(0, 0, 0, 0.11) 0px 2px 10px 0px)
+
+  &:hover
+    //@include box-shadow-2(rgba(0, 0, 0, 0.15) 0px 4px 10px 0px, rgba(0, 0, 0, 0.11) 0px 4px 20px 0px)
+    background-color: $pink-300
+    @include box-shadow-2(rgba(0, 0, 0, 0.3) 0px 2px 5px 0px, rgba(0, 0, 0, 0.22) 0px 2px 10px 0px)

@@ -1,0 +1,15 @@
+$dark-background: false;
+@import "../lib/definitions";
+
+$primary-color: $teal-500;
+$accent-color: $purple-A400;
+
+@import "../lib/rules";
+
+.logo {
+    color: $primary-color;
+}
+
+.tagline {
+    color: $accent-color;
+}

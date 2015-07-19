@@ -1,0 +1,35 @@
+#main
+  padding-left: 240px
+
+// grid layout
+#left-sidebar-nav
+  position: fixed
+  width: 240px
+  left: 0
+  z-index: 999
+  height: auto
+
+  // profile
+  #slide-out
+    list-style-type: none
+    margin: 0
+    padding: 0
+    width: 100%
+
+    li
+      width: 100%
+
+    .profile
+      min-height: 150px
+      background: url('../images/layout/bg-profile.png') top right
+
+
+$inner-shadow-height: 15px
+.content-white
+  background: #fcfcfc
+  box-shadow: inset 0 15px 15px -15px #696868
+  -moz-box-shadow: inset 0 15px 15px -15px #696868
+  -webkit-box-shadow: inset 0 15px 15px -15px #696868
+
+.content-padding
+  padding: $inner-shadow-height

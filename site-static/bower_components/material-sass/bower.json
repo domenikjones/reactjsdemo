@@ -1,0 +1,19 @@
+{
+  "name": "MaterialSass",
+  "version": "0.1.0",
+  "homepage": "https://github.com/pajn/materialsass",
+  "authors": [
+    "Rasmus Eneman <rasmus@eneman.eu>"
+  ],
+  "description": "Sass helpers for designing pages conforming to the Material Design specification",
+  "main": ["lib/_definitions.scss", "lib/_rules.scss"],
+  "keywords": [
+    "material",
+    "design",
+    "sass"
+  ],
+  "license": "Apache-2.0",
+  "ignore": [
+    "**/.*"
+  ]
+}
