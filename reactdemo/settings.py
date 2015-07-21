@@ -170,38 +170,52 @@ REST_FRAMEWORK = {
 
 # Set your DSN value
 RAVEN_CONFIG = {
-    'dsn': 'http://128e9c7296e148de8bec3656c9659216:b5adce44dbb0434ba7838a194ddecd90@log.emakiapp.ch:9001/2',
+    'dsn': 'http://c10e1e9a7d5f4919a2a2473258f5d7ac:8de0da3f453a42dd9b1f3c9a4d8aa2ca@log.emakiapp.ch:9001/4',
 }
 
 LOGGING = {
     'version': 1,
-    'disable_existing_loggers': True,
+    'disable_existing_loggers': False,
     'formatters': {
-        'verbose': {
-            'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s'
-        },
         'simple': {
-            'format': '%(levelname)s %(message)s'
+            'format': '%(levelname)s: %(message)s'
         },
+        'verbose': {
+            'format':
+              '%(levelname)s|%(asctime)s|%(name)s>> %(message)s',
+        },
+    },
+    'filters': {
+        'static_fields': {
+            '()': 'demo.core.logfilters.StaticFieldFilter',
+            'fields': {
+                'project': 'reactjsdemo',
+                'environment': 'development',
+                'base_dir': BASE_DIR,
+            },
+        },
+        'django_exc': {
+            '()': 'demo.core.logfilters.RequestFilter',
+        }
     },
     'handlers': {
         'gelf': {
-            'level': 'WARNING',
+            'level': 'DEBUG',
             'class': 'graypy.GELFHandler',
+            'filters': ['static_fields', 'django_exc'],
             'host': 'log.emakiapp.ch',
             'port': 12201,
         },
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'verbose',
+        },
     },
     'loggers': {
-        'django.request': {
-            'handlers': ['gelf'],
+        'graylogger': {
+            'handlers': ['console', 'gelf'],
             'level': 'DEBUG',
-            'propagate': True,
-        },
-        'graylog': {
-            'handlers': ['gelf'],
-            'level': 'INFO',
-            'propagate': True,
         },
     },
 }
