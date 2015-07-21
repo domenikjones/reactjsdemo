@@ -29,7 +29,6 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
-
 INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.auth',
@@ -41,7 +40,10 @@ INSTALLED_APPS = (
     'rest_framework',
     'filer',
     'easy_thumbnails',
+    'adminsortable2',
     'apiv1',
+    'raven.contrib.django.raven_compat',
+    'graypy',
     'demo',
 )
 
@@ -164,4 +166,42 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
     ],
     'PAGE_SIZE': 10
+}
+
+# Set your DSN value
+RAVEN_CONFIG = {
+    'dsn': 'http://128e9c7296e148de8bec3656c9659216:b5adce44dbb0434ba7838a194ddecd90@log.emakiapp.ch:9001/2',
+}
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': True,
+    'formatters': {
+        'verbose': {
+            'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s'
+        },
+        'simple': {
+            'format': '%(levelname)s %(message)s'
+        },
+    },
+    'handlers': {
+        'gelf': {
+            'level': 'WARNING',
+            'class': 'graypy.GELFHandler',
+            'host': 'log.emakiapp.ch',
+            'port': 12201,
+        },
+    },
+    'loggers': {
+        'django.request': {
+            'handlers': ['gelf'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+        'graylog': {
+            'handlers': ['gelf'],
+            'level': 'INFO',
+            'propagate': True,
+        },
+    },
 }
