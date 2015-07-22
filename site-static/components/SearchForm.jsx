@@ -49,6 +49,7 @@ var SearchForm = React.createClass({
         this.printFormData();
     },
     setStateFormData: function() {
+        // this is pretty nasty, a dict should be gathered and set the state.form
         this.state.form.location = this.refs.search_form_location.getDOMNode().value;
         this.state.form.price_from = this.refs.search_form_price_from.getDOMNode().value;
         this.state.form.price_to = this.refs.search_form_price_to.getDOMNode().value;
@@ -64,6 +65,10 @@ var SearchForm = React.createClass({
         var room_range = form_helpers.room_range;
         var distance_range = form_helpers.distance_range;
         var living_space_range = form_helpers.living_space_range;
+
+        /*
+         These inputs and selects can be made out of components to avoid redundancy. Time...
+         */
 
         return (
             <div className="content-padding">
@@ -88,25 +93,14 @@ var SearchForm = React.createClass({
 
 
                         <div className="col-sm-6 col-sm-2 col-md-2  col-lg-1">
-                            <div className="form-group">
-                                <label>
-                                    Distance*
-                                    <div className="row">
-                                        <div className="col-xs-12">
-                                            <i className="fa fa-angle-down select-arrow"></i>
-                                            <select name="price_from" ref="search_form_distance" id=""
-                                                className="form-control" onChange={this.handleFormChange}>
-                                                {distance_range.map(function(distance) {
-                                                    return (
-                                                        <option value={distance}>{distance}</option>
-                                                    );
-                                                })}
-                                            </select>
-
-                                        </div>
-                                    </div>
-                                </label>
-                            </div>
+                            <FormSelect
+                                label="Distance*"
+                                name="distance"
+                                onChange={this.handleFormChange}
+                                ref="search_form_distance"
+                                id="search_form_distance"
+                                options={distance_range}
+                            />
                         </div>
 
                         <div className="col-sm-6 col-sm-4 col-md-4 col-lg-2">
@@ -231,5 +225,27 @@ var SearchForm = React.createClass({
                 </div>
             </div>
         );
+
+        /*
+                            <div className="form-group">
+                                <label>
+                                    Distance*
+                                    <div className="row">
+                                        <div className="col-xs-12">
+                                            <i className="fa fa-angle-down select-arrow"></i>
+                                            <select name="distance" ref="search_form_distance" id=""
+                                                className="form-control" onChange={this.handleFormChange}>
+                                                {distance_range.map(function(distance) {
+                                                    return (
+                                                        <option value={distance}>{distance}</option>
+                                                    );
+                                                })}
+                                            </select>
+
+                                        </div>
+                                    </div>
+                                </label>
+                            </div>
+         */
     }
 });

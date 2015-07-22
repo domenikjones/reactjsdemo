@@ -196,7 +196,7 @@ LOGGING = {
         },
         'django_exc': {
             '()': 'demo.core.logfilters.RequestFilter',
-        }
+        },
     },
     'handlers': {
         'gelf': {

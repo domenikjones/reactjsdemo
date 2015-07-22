@@ -35,7 +35,7 @@ var BootstrapModal = React.createClass({
             <div className="modal fade">
                 <div className="container modal-container">
 
-                    <div className="modal-header">
+                    <div className="modal-header" style={{display: "none"}}>
                         <button
                             type="button"
                             className="close"

@@ -4,7 +4,8 @@ var AppartementListing = React.createClass({
             appartement: {
                 title: "Some Title"
             },
-            modal_content: null
+            modal_content: null,
+            gmap: null
         }
     },
     openModal: function(element) {
@@ -32,34 +33,75 @@ var AppartementListing = React.createClass({
         this.setState({appartement: data});
         this.setState({modal_content: this.setModalContent()});
         this.refs.modal.open();
+        $('#appartment-tabs').tab('show'); // init bootstrap tabs
+    },
+    initGMap: function() {
+        console.log("init google map");
+    },
+    destroyGMap: function() {
+        console.log("destroy google map");
     },
     setModalContent: function(){
+        var appartement = this.state.appartement;
+        // bootstrap modal content
         return (
-            <div className="content">
-                pk: {this.state.appartement.pk}<br />
-                UUID: {this.state.appartement.uuid}<br /><br />
-                Available: {this.state.appartement.available}<br />
-                Living Space: {this.state.appartement.living_space}<br />
-                Floor: {this.state.appartement.floor}<br />
-                Balconies: {this.state.appartement.balconies}<br />
-                Balconies Space: {this.state.appartement.balconies_space}<br />
-                Price: {this.state.appartement.price}<br />
-                Price Netto: {this.state.appartement.price_netto}<br />
-                Street No.: {this.state.appartement.street_nr}<br />
-                Postal Code: {this.state.appartement.postal_code}<br />
-                City: {this.state.appartement.city}<br />
-                Country: {this.state.appartement.country}<br /><br />
-                Contact Name: {this.state.appartement.contact_name}<br />
-                Contact Email: {this.state.appartement.contact_email}<br />
-                Contact Phone: {this.state.appartement.contact_phone}<br />
+            <div>
+                <div className="row">
+
+                    <div className="title">
+                        <h1>
+                            {appartement.title}<br />
+                            <small>{appartement.description}</small>
+                        </h1>
+                    </div>
+
+                    <div className="tab-navigation">
+                        <ul className="nav nav-tabs" id="appartment-tabs" role="tablist">
+                            <li className="active" role="presentation"><a href="#overview" aria-controls="overview" role="tab" data-toggle="tab">Overview</a></li>
+                            <li className="" role="presentation"><a href="#map" aria-controls="map" role="tab" data-toggle="tab">Show on Map</a></li>
+                        </ul>
+                    </div>
+
+                    <div className="content">
+                        <div className="tab-content">
+                            <div role="tabpanel" className="tab-pane active" id="overview">
+                                TAB OVERVIEW
+                            </div>
+                            <div role="tabpanel" className="tab-pane" id="map">
+                                TAB MAP
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
             </div>
         );
+        /*
+        <div className="content">
+            pk: {this.state.appartement.pk}<br />
+            UUID: {this.state.appartement.uuid}<br /><br />
+            Available: {this.state.appartement.available}<br />
+            Living Space: {this.state.appartement.living_space}<br />
+            Floor: {this.state.appartement.floor}<br />
+            Balconies: {this.state.appartement.balconies}<br />
+            Balconies Space: {this.state.appartement.balconies_space}<br />
+            Price: {this.state.appartement.price}<br />
+            Price Netto: {this.state.appartement.price_netto}<br />
+            Street No.: {this.state.appartement.street_nr}<br />
+            Postal Code: {this.state.appartement.postal_code}<br />
+            City: {this.state.appartement.city}<br />
+            Country: {this.state.appartement.country}<br /><br />
+            Contact Name: {this.state.appartement.contact_name}<br />
+            Contact Email: {this.state.appartement.contact_email}<br />
+            Contact Phone: {this.state.appartement.contact_phone}<br />
+        </div>
+        */
     },
     render: function() {
         // create AppartementItems provided by api
         var AppartementItems = this.props.appartements.map(function(appartement){
             return (
-                <div className="col-xs-12 col-sm-6 col-md-4">
+                <div className="col-xs-12 col-sm-6 col-md-6 col-lg-4">
                     <div className="material-card">
                         <Appartement title={appartement.title}
                                      key={appartement.uuid}

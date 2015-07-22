@@ -382,13 +382,30 @@ h3 {
   margin-top: 50px;
 }
 /* line 13, ../../style/sass/misc/_modal.sass */
+.modal .container {
+  padding: 0;
+}
+/* line 16, ../../style/sass/misc/_modal.sass */
 .modal .modal-container {
   max-width: 80%;
   background: white;
 }
-/* line 20, ../../style/sass/misc/_modal.sass */
-.modal .modal-container .modal-header .close {
-  color: black;
+/* line 21, ../../style/sass/misc/_modal.sass */
+.modal .modal-container .modal-header {
+  display: none;
+}
+/* line 24, ../../style/sass/misc/_modal.sass */
+.modal .modal-container .modal-body {
+  padding: 0 15px;
+}
+/* line 27, ../../style/sass/misc/_modal.sass */
+.modal .modal-container .modal-body .title {
+  padding: 15px;
+}
+/* line 30, ../../style/sass/misc/_modal.sass */
+.modal .modal-container .modal-body .title h1 {
+  margin: 0;
+  padding: 0;
 }
 
 /* line 5, ../../style/sass/misc/_appartements.sass */

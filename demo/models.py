@@ -100,6 +100,22 @@ class Appartement(BaseModel):
         ordering = ('title', )
 
 
+class AppartementImage(BaseModel):
+    description = models.CharField(_(u"Description"), max_length=255, null=True, )
+    image = FilerImageField()
+    priority = models.SmallIntegerField(_(u"Priority"), default=0, )
+    appartement = models.ForeignKey("Appartement", related_name="appartement_images", )
+
+    def __unicode__(self):
+        return u"%s" % self.description
+
+    class Meta:
+        app_label = "demo"
+        verbose_name = _(u"Image")
+        verbose_name_plural = _(u"Images")
+        ordering = ('priority', )
+
+
 class AppartementType(BaseModel):
     title = models.CharField(_(u"Type"), max_length=255, )
 
